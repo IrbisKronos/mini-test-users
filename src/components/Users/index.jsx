@@ -19,10 +19,12 @@ export const Users = ({ items, isLoading }) => {
             </div>
          ) : (
             <ul className="users-list">
-               <User />
+               {items.map((user) =>
+                  <User key={user.id} {...user} />
+               )}
             </ul>
          )}
-         <button className="send-invite-btn">Отправить приглашение</button>
+         <button className="send-invite-btn">Відправити запрошення</button>
       </>
    );
 };
