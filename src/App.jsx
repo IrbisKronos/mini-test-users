@@ -14,9 +14,10 @@ function App() {
   const [searchValue, setSearchValue] = useState('');
 
   // Відправлення запрошення
-
   const [invites, setInvites] = useState([]);
 
+  // Підтвердчення на відправку
+  const [success, setSuccess] = useState(false);
 
 
   useEffect(() => {
@@ -44,17 +45,25 @@ function App() {
     }
   };
 
+  const onClickSendIvites = () => {
+    setSuccess(true);
+  }
+
   return (
     <div className="App">
-      <Users
-        items={users}
-        isLoading={isLoading}
-        searchValue={searchValue}
-        onChangeSearchValue={onChangeSearchValue}
-        invites={invites}
-        onClickIvite={onClickIvite}
-      />
-      {/* <Success /> */}
+      {success ? (
+        <Success count={invites.length}/>
+      ) : (
+        <Users
+          items={users}
+          isLoading={isLoading}
+          searchValue={searchValue}
+          onChangeSearchValue={onChangeSearchValue}
+          invites={invites}
+          onClickIvite={onClickIvite}
+          onClickSendIvites={onClickSendIvites}
+        />
+      )}
     </div>
   );
 }

@@ -2,7 +2,15 @@ import React from 'react';
 import { Skeleton } from './Skeleton';
 import { User } from './User';
 
-export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invites, onClickIvite }) => {
+export const Users = ({
+   items,
+   isLoading,
+   searchValue,
+   onChangeSearchValue,
+   invites,
+   onClickIvite,
+   onClickSendIvites
+}) => {
    return (
       <>
          <div className="search">
@@ -39,7 +47,9 @@ export const Users = ({ items, isLoading, searchValue, onChangeSearchValue, invi
                   ))}
             </ul>
          )}
-         <button className="send-invite-btn">Відправити запрошення</button>
+         {invites.length > 0 &&
+            <button onClick={onClickSendIvites} className="send-invite-btn">Відправити запрошення</button>
+         }
       </>
    );
 };
